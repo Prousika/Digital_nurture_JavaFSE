@@ -289,5 +289,61 @@ public class Demo {
 }
 
 
+TRANSACTION HANDLING IN JAVA
+
+import java.sql.*;
+public class demo3 {
+    public static void main(String[] args)throws Exception {
+        String url = "jdbc:mysql://localhost:3306/accounts";
+        String username = "root";
+        String password = "root1234";
+
+        Connection con =
+                DriverManager.getConnection(url, username, password);
+        PreparedStatement sys = con.prepareStatement("Select * from account");
+        ResultSet rs = sys.executeQuery();
+        while(rs.next()){
+            System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3));
+        }
+        try {
+            con.setAutoCommit(false);
+            String debit="update account set balance = balance-? where accNo=?";
+            PreparedStatement ps = con.prepareStatement(debit);
+            int bal=1000;
+            ps.setInt(1,bal);
+            ps.setInt(2,101);
+            ps.executeUpdate();
+
+
+            String credit="update account set balance = balance+? where accNo=?";
+            PreparedStatement ps1 = con.prepareStatement(credit);
+            ps1.setInt(1,bal);
+            ps1.setInt(2,102);
+            ps1.executeUpdate();
+
+            con.commit();
+            System.out.println("Transaction Successfull");
+
+        }
+        catch(Exception e){
+            con.rollback();
+            System.out.println("Transaction Failed");
+        }
+        PreparedStatement sys1 = con.prepareStatement("Select * from account");
+        ResultSet rs1 = sys1.executeQuery();
+        while(rs1.next()){
+            System.out.println(rs1.getInt(1)+" "+rs1.getString(2)+" "+rs1.getInt(3));
+        }
+        con.close();
+    }
+}
+
+output:
+101 Ravi 4000
+102 Kumar 4000
+Transaction Successfull
+101 Ravi 3000
+102 Kumar 5000
+
 
 
