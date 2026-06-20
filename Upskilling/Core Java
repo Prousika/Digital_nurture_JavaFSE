@@ -59,7 +59,84 @@ public class ComparatorDemo {
     }
 }
 
+THREADS
+1) class A extends Thread{
+    public void run(){
+        for(int i=0;i<20;i++){
+            System.out.println("Hey hello..");
+        }
+    }
+}
+
+class B extends Thread{
+    public void run(){
+        for(int i=0;i<20;i++){
+           System.out.println("Okay byee..");
+        }
+    }
+}
+
+public class Main{
+    public static void main(String[] args){
+        A a1 = new A();
+        a1.start();
+        B b1 = new B();
+        b1.start();
+    }
+}
+
+
+2) class Counter { 
+    int count = 0; 
+    synchronized void increment() {
+        count++;
+    } 
+    
+} 
+class MyThread extends Thread {
+    Counter c;
+    MyThread(Counter c) { 
+        this.c = c; 
+        
+    }
+    public void run()
+    {
+        for(int i=0;i<1000;i++)
+              c.increment(); 
+        
+    } 
+    
+} 
+public class Main {
+    public static void main(String[] args) throws Exception { 
+        Counter c = new Counter();
+        MyThread t1 = new MyThread(c);
+        MyThread t2 = new MyThread(c);
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+        System.out.println(c.count);
+    }
+}
+
 LAMBDA EXPRESSION
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        List<String> list = new ArrayList<>();
+        list.add("Mango");
+        list.add("Apple");
+        list.add("Orange");
+        list.add("Banana");
+        Collections.sort(list, (a,b)->a.compareTo(b));
+        System.out.print("Sorted List : ");
+        for(String s : list){
+            System.out.print(s+" ");
+        }
+    }
+}
 
 
 STREAM API
