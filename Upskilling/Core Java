@@ -223,11 +223,33 @@ public class Main {
 }
 
 
-JDBC CONNECTION AND CRUD OPERATIONS:
+JDBC CONNECTION:
 
-
-
-
+import java.sql.*;
+public class Demo2 {
+    // import packages
+    //Load Driver
+    //register Drive
+    // create connection
+    //create statement
+    // close
+    public static void main(String[] args) throws Exception{
+        String url = "jdbc:mysql://localhost:3306/jdbcdemo";
+        String username = "root";
+        String password = "root1234";
+        Connection con = DriverManager.getConnection(url, username, password);
+        Statement st = con.createStatement();
+        /*String sql = "Select * from orders";
+        ResultSet rs = st.executeQuery(sql);
+        System.out.println(con.getCatalog());
+        while(rs.next()){
+            System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3));
+        }*/
+        String sql = "insert into orders values(4,'salt',10);";
+        st.executeUpdate(sql);
+        con.close();
+    }
+}
 
 
 USING PREPARED STATEMENT
@@ -265,4 +287,7 @@ public class Demo {
        con.close();
    }
 }
+
+
+
 
