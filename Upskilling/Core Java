@@ -346,4 +346,45 @@ Transaction Successfull
 102 Kumar 5000
 
 
+SERVER - CLIENT CONNECTION
+
+ServerProgram.java:
+import java.net.*;
+import java.io.*;
+import java.util.*;
+public class ServerProgram {
+    public static void main(String[] args){
+        try{
+            ServerSocket ss = new ServerSocket(5000);
+            System.out.println("Waiting for client");
+            Socket server = ss.accept();
+            System.out.println("client is Connected");
+            //read data from client
+            BufferedReader br = new BufferedReader( new InputStreamReader(server.getInputStream()));
+            String msg = br.readLine();
+            System.out.println("Client: "+msg);
+            ss.close();
+            server.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+}
+
+clientProgram.java:
+import java.net.*;
+import java.util.*;
+import java.io.*;
+public class clientProgram {
+    public static void main(String[] args) throws Exception{
+        Socket socket = new Socket("localhost",5000);
+        //send data to server
+        PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
+        pw.println("Hello Server");
+        socket.close();
+    }
+}
+
+
+
 
