@@ -408,3 +408,47 @@ public class httpDemo {
 
 -------------------------------------------------------------------------------------------
 
+REFLECTION IN JAVA
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+public class Main{
+       public static void main(String[] args) throws Exception{
+
+           Class<?> c = Class.forName("Product");// to load a Class
+           //System.out.println(c.getName());
+           //System.out.println(c.getSuperclass());
+           //System.out.println(c.getConstructors().length);
+
+           System.out.println("Constructors: ");
+
+           Constructor cons[] = c.getConstructors();
+           for(Constructor constructor: cons){
+               //System.out.println(constructor.getName());
+               System.out.println(constructor);
+           }
+
+           System.out.println("Fields: ");
+           //Field fields[] = c.getFields(); this will get all public variables
+           // to get private variables
+           Field fields[] = c.getDeclaredFields();
+           for(Field field : fields) {
+               System.out.println(field.getName());
+           }
+
+           System.out.println("Methods: ");
+          // Method methods[] = c.getMethods();
+           Method methods[] = c.getDeclaredMethods();
+           for(Method met : methods){
+               System.out.println(met.getName());
+           }
+           Object obj = c.getDeclaredConstructor().newInstance();// means Product obj = new Product();
+           Method method = c.getDeclaredMethod("setName", String.class);
+           method.invoke(obj, "Laptop");
+       }
+}
+
+------------------------------------------------------------------------------------------------
+
