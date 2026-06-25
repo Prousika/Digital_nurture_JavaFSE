@@ -1,6 +1,6 @@
-### **Exercise 1: Implementing the Singleton Pattern**
+Exercise 1: Implementing the Singleton Pattern
 
-**Logger.java**
+Logger.java
 package SingletonPatternExample;
 
 public class Logger {
@@ -23,7 +23,7 @@ public class Logger {
     }
 }
 
-**TestSingleton.java**
+TestSingleton.java
 package SingletonPatternExample;
 
 public class TestSingleton {
@@ -45,7 +45,7 @@ public class TestSingleton {
 }
 
 
-**OUTPUT:**
+OUTPUT:
 Logger Instance created
 Log: Application started.
 Log: User Logged in
