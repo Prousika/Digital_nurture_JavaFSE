@@ -52,10 +52,10 @@ public class RazorpayAdapter implements PaymentProcessor{
     }
 }
 
-AdapterPatternTestClass.java
+AdapterPatternExample.java
 
 //test class
-public class AdapterPatternTestClass {
+public class AdapterPatternExample {
     public static void main(String[] args){
         PaymentProcessor paypal = new PaypalAdapter();
         paypal.processPayment(5000.00);
