@@ -53,5 +53,9 @@ public static double futureValueIterative(double amount, double rate, int years)
 //Memoization - better when recursive algorithm recomputes the same subproblems multiple times
 
 
+//using Mathematical Formula
 
+public static double futureValue(double amount, double rate, int years){
+  return amount*Math.pow(1+rate, years);
+}
 
