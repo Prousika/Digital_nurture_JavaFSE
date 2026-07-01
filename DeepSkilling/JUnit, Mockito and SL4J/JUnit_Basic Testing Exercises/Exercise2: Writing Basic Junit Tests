@@ -1,1 +1,38 @@
 
+Java Class
+
+package sampleApplication;
+
+public class calculator {
+
+    int divide(int num1, int num2){
+        return num1/num2;
+    }
+}
+
+
+Test Class
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class CalcTest {
+
+    @Test
+    void divideByNumber(){
+          calculator calc = new calculator();
+          int actualResult=calc.divide(10,5);
+          int expectedResult=2;
+
+          assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    void divideByZero(){
+        calculator calc = new calculator();
+        assertThrows(ArithmeticException.class,
+                () -> calc.divide(10,0));
+    }
+}
