@@ -1,0 +1,7 @@
+package mockitoDemo;
+
+public interface ExternalApi {
+
+    String getData();
+
+}
