@@ -1,0 +1,4 @@
+14:59:09 INFO  org.example.Main - Application Started
+14:59:09 WARN  org.example.Main - Low Memory Warning
+14:59:09 ERROR org.example.Main - Database Connection Failed
+14:59:09 INFO  org.example.Main - Application Closed
